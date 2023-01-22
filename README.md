@@ -1,2 +1,2 @@
 # WeShow-iOS
-WeShow iOS 앱입니다.
+반려동물들을 위한 쇼핑앱 WeShow iOS입니다!
