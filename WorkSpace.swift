@@ -5,6 +5,8 @@ let workspace = Workspace(
     name: "WeShow-Workspace",
     projects: [
         "Application",
-        "Services/**"
+        "Data",
+        "DI",
+        "Domain"
     ]
 )

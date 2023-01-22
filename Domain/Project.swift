@@ -2,7 +2,6 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.framework(
-    name: "Test",
-    dependencies: [
-    ]
+    name: "Domain",
+    dependencies: []
 )
