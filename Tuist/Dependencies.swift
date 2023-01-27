@@ -3,7 +3,10 @@ import ProjectDescription
 let dependencies = Dependencies(
     carthage: CarthageDependencies([
         // FlexLayout
-        .github(path: "layoutBox/FlexLayout", requirement: .branch("master"))
+        .github(
+            path: "layoutBox/FlexLayout",
+            requirement: .branch("master")
+        )
     ]),
     swiftPackageManager: SwiftPackageManagerDependencies([
         // RxSwift
