@@ -28,6 +28,11 @@ let dependencies = Dependencies(
         .remote(
             url: "https://github.com/rlarldud1234/RIBs",
             requirement: .branch("main")
+        ),
+        // ReactorKit
+        .remote(
+            url: "https://github.com/ReactorKit/ReactorKit.git",
+            requirement: .upToNextMajor(from: "3.2.0")
         )
     ]),
     platforms: [.iOS]

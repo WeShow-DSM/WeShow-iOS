@@ -5,6 +5,7 @@ extension TargetDependency {
     public struct SPM {
 
         // Design Pattern
+        public static let ReactorKit = TargetDependency.external(name: "ReactorKit")
         public static let RIBs = TargetDependency.external(name: "RIBs")
 
         // Publishing
