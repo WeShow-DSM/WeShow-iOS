@@ -1,5 +1,6 @@
 #제외할 룰
 disabled_rules:
+  - line_length
 
 #제외할 디렉터리/파일
 excluded:
