@@ -37,6 +37,7 @@ final class TabBarViewController: UITabBarController, TabBarPresentable, TabBarV
             UINavigationController(rootViewController: viewControllers[3].uiviewController)
         ]
         self.tabBar.backgroundColor = .white
+        self.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         self.tabBar.layer.cornerRadius = 30
     }
 
