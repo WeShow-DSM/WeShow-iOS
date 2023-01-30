@@ -13,22 +13,22 @@ final class TabBarViewController: UITabBarController, TabBarPresentable, TabBarV
         viewControllers[0].uiviewController.tabBarItem = .init(
             title: "",
             image: .init(named: "home"),
-            selectedImage: .init(named: "selectedHome")
+            selectedImage: .init(named: "home")
         )
         viewControllers[1].uiviewController.tabBarItem = .init(
             title: "",
             image: .init(named: "category"),
-            selectedImage: .init(named: "selectedCategory")
+            selectedImage: .init(named: "category")
         )
         viewControllers[2].uiviewController.tabBarItem = .init(
             title: "",
             image: .init(named: "search"),
-            selectedImage: .init(named: "selectedSearch")
+            selectedImage: .init(named: "search")
         )
         viewControllers[3].uiviewController.tabBarItem = .init(
             title: "",
             image: .init(named: "myPage"),
-            selectedImage: .init(named: "selectedMyPage"))
+            selectedImage: .init(named: "myPage"))
 
         self.viewControllers = [
             UINavigationController(rootViewController: viewControllers[0].uiviewController),
