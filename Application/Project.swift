@@ -22,6 +22,7 @@ let project = Project(
                 .Carthage.FlexLayout,
                 .SPM.Then,
                 .SPM.RIBs,
+                .SPM.ReactorKit,
                 .SPM.RxCocoa,
                 .SPM.PinLayout
             ] + TargetDependency.globalDependencies,
