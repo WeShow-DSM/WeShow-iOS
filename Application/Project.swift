@@ -20,11 +20,12 @@ let project = Project(
             scripts: [.swiftLintScript],
             dependencies: [
                 .Carthage.FlexLayout,
-                .SPM.Then,
-                .SPM.RIBs,
+                .SPM.Cosmos,
+                .SPM.PinLayout,
                 .SPM.ReactorKit,
+                .SPM.RIBs,
                 .SPM.RxCocoa,
-                .SPM.PinLayout
+                .SPM.Then
             ] + TargetDependency.globalDependencies,
             settings: .settings(base: ["OTHER_LDFLAGS": "-ObjC"])
         )

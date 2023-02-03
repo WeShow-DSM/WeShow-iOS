@@ -9,6 +9,7 @@ extension TargetDependency {
         public static let RIBs = TargetDependency.external(name: "RIBs")
 
         // Publishing
+        public static let Cosmos = TargetDependency.external(name: "Cosmos")
         public static let Then = TargetDependency.external(name: "Then")
         public static let PinLayout = TargetDependency.external(name: "PinLayout")
 
