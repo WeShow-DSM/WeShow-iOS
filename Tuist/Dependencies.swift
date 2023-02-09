@@ -14,6 +14,16 @@ let dependencies = Dependencies(
             url: "https://github.com/evgenyneu/Cosmos",
             requirement: .branch("master")
         ),
+        // KeychainSwift
+        .remote(
+            url: "https://github.com/evgenyneu/keychain-swift",
+            requirement: .upToNextMajor(from: "20.0.0")
+        ),
+        // Moya
+        .remote(
+            url: "https://github.com/Moya/Moya.git",
+            requirement: .upToNextMajor(from: "15.0.0")
+        ),
         // PinLayout
         .remote(
             url: "https://github.com/layoutBox/PinLayout",
@@ -33,6 +43,11 @@ let dependencies = Dependencies(
         .remote(
             url: "https://github.com/ReactiveX/RxSwift.git",
             requirement: .upToNextMajor(from: "6.5.0")
+        ),
+        // Swinject
+        .remote(
+            url: "https://github.com/Swinject/Swinject.git",
+            requirement: .upToNextMajor(from: "2.8.3")
         ),
         // Then
         .remote(
