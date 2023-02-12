@@ -11,8 +11,8 @@ class RecommendProductCollectionViewCell: UICollectionViewCell {
 
     // MARK: - UI
     private let productImageView = UIImageView().then {
-        $0.backgroundColor = .white
-        $0.contentMode = .scaleToFill
+        $0.backgroundColor = WeShowIOSAsset.Color.gray25.color
+        $0.contentMode = .scaleAspectFit
     }
     private let mostBougthProductLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 8, weight: .semibold)
@@ -52,7 +52,7 @@ class RecommendProductCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        productImageView.image = .init(asset: WeShowIOSAsset.Images.logo)
+        productImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
         productNameLabel.text = "저희 앱의 로고입니다."
         discountPriceLabel.text = "45,000원"
         priceLabel.attributedText = "50,000원".strikeLineToCenter()

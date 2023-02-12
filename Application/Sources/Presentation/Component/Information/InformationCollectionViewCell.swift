@@ -10,8 +10,8 @@ class InformationCollectionViewCell: UICollectionViewCell {
 
     // MARK: - UI
     private let informationImageView = UIImageView().then {
-        $0.contentMode = .scaleToFill
-        $0.backgroundColor = .white
+        $0.contentMode = .scaleAspectFit
+        $0.backgroundColor = WeShowIOSAsset.Color.gray25.color
         $0.layer.shadowColor = UIColor(asset: WeShowIOSAsset.Color.pointMinus2)!.cgColor
         $0.layer.shadowRadius = 3
         $0.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -26,7 +26,7 @@ class InformationCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        informationImageView.image = .init(asset: WeShowIOSAsset.Images.logo)
+        informationImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
     }
 }
 

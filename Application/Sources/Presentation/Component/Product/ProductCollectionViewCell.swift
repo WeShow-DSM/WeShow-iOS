@@ -11,8 +11,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
 
     // MARK: - UI
     private let productImageView = UIImageView().then {
-        $0.backgroundColor = .white
-        $0.contentMode = .scaleToFill
+        $0.backgroundColor = WeShowIOSAsset.Color.gray25.color
+        $0.contentMode = .scaleAspectFit
     }
     private let productNameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 8, weight: .regular)
@@ -43,7 +43,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        productImageView.image = .init(asset: WeShowIOSAsset.Images.logo)
+        productImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
         productNameLabel.text = "이것은 저희 로고입니다."
         priceLabel.text = "10,000원"
         starView.rating = 4.5
