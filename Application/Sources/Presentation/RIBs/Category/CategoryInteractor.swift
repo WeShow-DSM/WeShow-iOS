@@ -11,6 +11,7 @@ protocol CategoryPresentable: Presentable {
 protocol CategoryListener: AnyObject {
 }
 
+// swiftlint:disable line_length
 final class CategoryInteractor: PresentableInteractor<CategoryPresentable>, CategoryInteractable, CategoryPresentableListener {
 
     weak var router: CategoryRouting?
