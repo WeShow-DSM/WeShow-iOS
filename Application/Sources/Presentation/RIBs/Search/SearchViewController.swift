@@ -9,7 +9,6 @@ protocol SearchPresentableListener: AnyObject {
 final class SearchViewController: UIViewController, SearchPresentable, SearchViewControllable {
 
     weak var listener: SearchPresentableListener?
-    var childrens: [UIViewController] = []
     private let rootFlexContainer = UIView()
 
     // MARK: - SearchBar
