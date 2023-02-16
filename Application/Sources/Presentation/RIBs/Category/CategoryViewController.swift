@@ -4,21 +4,36 @@ import UIKit
 
 import FlexLayout
 import PinLayout
+import ReactorKit
+import RxCocoa
 import Then
 
+enum CategoryPresentableAction {
+    case loadDetail(String)
+    case viewWillAppear
+}
+struct CategoryPresentableState {
+}
+
 protocol CategoryPresentableListener: AnyObject {
+    typealias Action = CategoryPresentableAction
+    typealias State = CategoryPresentableState
+
+    func sendAction(_ action: Action)
 }
 
 final class CategoryViewController: UIViewController, CategoryPresentable, CategoryViewControllable {
 
     weak var listener: CategoryPresentableListener?
 
-    private let rootFlexContainer = UIView()
+    private var disposeBag = DisposeBag()
     private let categoryImageStringList = ["feed", "toy", "walkingProduct",
                                            "sanitaryProduct", "electronicDevices", "beauty",
                                            "clothing", "interior", "toiletProduct", ""]
     private let categoryTitleList = ["사료, 간식", "장난감", "산책용품", "위생용품", "전자기기",
                                      "미용 & 청결", "의류", "홈인테리어", "배변용품", "기타"]
+
+    private let rootFlexContainer = UIView()
 
     // MARK: - UI
     private let categoryTableView = UITableView().then {
@@ -32,11 +47,27 @@ final class CategoryViewController: UIViewController, CategoryPresentable, Categ
         super.viewDidLoad()
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
         self.setTableView()
+        bind()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.listener?.sendAction(.viewWillAppear)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupLayoutWithFlex()
         setupRootFlexContainer()
+    }
+
+    private func bind() {
+        self.categoryTableView.rx.itemSelected.subscribe(onNext: {
+            self.listener?.sendAction(.loadDetail(self.categoryTitleList[$0.row]))
+        })
+        .disposed(by: disposeBag)
+    }
+
+    func pushViewController(viewController: ViewControllable) {
+        self.navigationController?.pushViewController(viewController.uiviewController, animated: true)
     }
 }
 
