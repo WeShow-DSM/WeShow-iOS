@@ -57,11 +57,10 @@ extension SearchViewController {
         self.rootFlexContainer.pin.all(view.pin.safeArea)
         self.rootFlexContainer.flex.layout(mode: .adjustHeight)
 
-        [searchResultView, recentSearchView].forEach {
+        [recentSearchView, searchResultView].forEach {
             addChild($0)
         }
-
-        recentSearchView.didMove(toParent: self)
+        recentSearchView.view.isHidden = false
     }
 
     private func setupLayoutWithFlex() {
