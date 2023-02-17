@@ -60,7 +60,9 @@ extension SearchViewController {
         [recentSearchView, searchResultView].forEach {
             addChild($0)
         }
-        recentSearchView.view.isHidden = false
+        searchResultView.view.isHidden = false
+        recentSearchView.view.isHidden = true
+
     }
 
     private func setupLayoutWithFlex() {

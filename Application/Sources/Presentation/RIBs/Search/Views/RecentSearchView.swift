@@ -2,7 +2,7 @@ import RxSwift
 import UIKit
 import Then
 
-final class RecentSearchView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class RecentSearchView: UIViewController {
     private let rootFlexContainer = UIView()
 
     private let recentSearchLabel = UILabel().then {
@@ -31,7 +31,7 @@ final class RecentSearchView: UIViewController, UITableViewDelegate, UITableView
 }
 
 // MARK: - TableView
-extension RecentSearchView {
+extension RecentSearchView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
