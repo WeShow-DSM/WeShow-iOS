@@ -10,6 +10,7 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
 
     weak var listener: SearchPresentableListener?
     private let rootFlexContainer = UIView()
+    private let bag = DisposeBag()
 
     // MARK: - SearchBar
 
@@ -41,12 +42,25 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
         super.viewDidLoad()
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
         searchContainerView.backgroundColor = .init(asset: WeShowIOSAsset.Color.point)
+        bind()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupLayoutWithFlex()
         setupRootFlexContainer()
+    }
+
+    func bind() {
+        searchTextField.rx.controlEvent(.allEditingEvents).bind {
+            self.searchResultView.view.isHidden = true
+            self.recentSearchView.view.isHidden = false
+        }.disposed(by: bag)
+
+        searchButton.rx.tap.bind {
+            self.searchResultView.view.isHidden = false
+            self.recentSearchView.view.isHidden = true
+        }.disposed(by: bag)
     }
 }
 
@@ -60,8 +74,7 @@ extension SearchViewController {
         [recentSearchView, searchResultView].forEach {
             addChild($0)
         }
-        searchResultView.view.isHidden = false
-        recentSearchView.view.isHidden = true
+        recentSearchView.view.isHidden = false
 
     }
 
