@@ -39,10 +39,6 @@ extension SearchResultView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return SearchResultCell()
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
-    }
 }
 // MARK: - Layout
 extension SearchResultView {
