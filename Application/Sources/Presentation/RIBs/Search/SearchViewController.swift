@@ -12,32 +12,28 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
     private let rootFlexContainer = UIView()
     private let bag = DisposeBag()
 
-    // MARK: - SearchBar
-
+    // MARK: - UI
     private let searchBackView = UIView().then {
         $0.layer.cornerRadius = 15
         $0.backgroundColor = WeShowIOSAsset.Color.gray200.color
     }
-
     private let searchTextField = UITextField().then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray200)
         $0.font = .systemFont(ofSize: 16, weight: .light)
         $0.layer.cornerRadius = 15
         $0.placeholder = "상품을 검색해주세요..."
     }
-
     private let searchButton = UIButton().then {
         $0.setImage(WeShowIOSAsset.Images.magnifyingglass.image, for: .normal)
     }
-
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
-
     private let searchContainerView = UIView()
     private let recentSearchView = RecentSearchView()
     private let searchResultView = SearchResultView()
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)

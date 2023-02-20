@@ -5,18 +5,20 @@ import Then
 final class RecentSearchView: UIViewController {
     private let rootFlexContainer = UIView()
 
+    // MARK: - UI
     private let recentSearchLabel = UILabel().then {
         $0.text = "최근 검색어"
         $0.font = .systemFont(ofSize: 12, weight: .bold)
         $0.textColor = .init(asset: WeShowIOSAsset.Color.gray700)
     }
-
     let tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.register(RecentSearchCell.self, forCellReuseIdentifier: "recentSearchCell")
     }
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
         tableView.delegate = self
@@ -44,6 +46,7 @@ extension RecentSearchView: UITableViewDelegate, UITableViewDataSource {
         return 30
     }
 }
+
 // MARK: - Layout
 extension RecentSearchView {
     private func setupRootFlexContainer() {

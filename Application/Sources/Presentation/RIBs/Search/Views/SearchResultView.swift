@@ -5,18 +5,20 @@ import Then
 final class SearchResultView: UIViewController {
     private let rootFlexContainer = UIView()
 
+    // MARK: - UI
     private let searchResultLabel = UILabel().then {
         $0.text = "12개의 검색 결과를 찾았습니다"
         $0.font = .systemFont(ofSize: 12, weight: .bold)
         $0.textColor = .init(asset: WeShowIOSAsset.Color.gray700)
     }
-
     let tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.register(SearchResultCell.self, forCellReuseIdentifier: "searchResultCell")
     }
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
         tableView.delegate = self
@@ -29,8 +31,8 @@ final class SearchResultView: UIViewController {
         setupRootFlexContainer()
     }
 }
-// MARK: - TableView
 
+// MARK: - TableView
 extension SearchResultView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
@@ -40,6 +42,7 @@ extension SearchResultView: UITableViewDelegate, UITableViewDataSource {
         return SearchResultCell()
     }
 }
+
 // MARK: - Layout
 extension SearchResultView {
     private func setupRootFlexContainer() {
