@@ -11,7 +11,7 @@ final class SearchResultView: UIViewController {
         $0.font = .systemFont(ofSize: 12, weight: .bold)
         $0.textColor = .init(asset: WeShowIOSAsset.Color.gray700)
     }
-    let tableView = UITableView().then {
+    private let tableView = UITableView().then {
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
