@@ -21,8 +21,7 @@ final class SearchResultView: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
-        tableView.delegate = self
-        tableView.dataSource = self
+        setTableView()
     }
 
     override func viewWillLayoutSubviews() {
@@ -34,6 +33,11 @@ final class SearchResultView: UIViewController {
 
 // MARK: - TableView
 extension SearchResultView: UITableViewDelegate, UITableViewDataSource {
+    private func setTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
