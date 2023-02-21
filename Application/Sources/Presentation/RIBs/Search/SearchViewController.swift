@@ -10,7 +10,7 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
 
     weak var listener: SearchPresentableListener?
     private let rootFlexContainer = UIView()
-    private let bag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     // MARK: - UI
     private let searchBackView = UIView().then {
@@ -51,12 +51,12 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
         searchTextField.rx.controlEvent(.allEditingEvents).bind {
             self.searchResultView.view.isHidden = true
             self.recentSearchView.view.isHidden = false
-        }.disposed(by: bag)
+        }.disposed(by: disposeBag)
 
         searchButton.rx.tap.bind {
             self.searchResultView.view.isHidden = false
             self.recentSearchView.view.isHidden = true
-        }.disposed(by: bag)
+        }.disposed(by: disposeBag)
     }
 }
 
