@@ -1,23 +1,18 @@
 import UIKit
-
 import Cosmos
 import FlexLayout
 import PinLayout
 import Then
 
-class RecommendProductCollectionViewCell: UICollectionViewCell {
+class SearchResultCell: UITableViewCell {
 
     private let rootFlexContainer = UIView()
 
     // MARK: - UI
     private let productImageView = UIImageView().then {
+        $0.clipsToBounds = true
         $0.backgroundColor = WeShowIOSAsset.Color.gray25.color
         $0.contentMode = .scaleAspectFit
-    }
-    private let mostBougthProductLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 8, weight: .semibold)
-        $0.text = "지금 가장 많이 사는 상품!"
-        $0.textColor = .red
     }
     private let productNameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 8, weight: .regular)
@@ -45,8 +40,34 @@ class RecommendProductCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: - Life Cycle
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
+        self.setDemoData()
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        contentView.pin.height(125)
+        return contentView.frame.size
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.backgroundColor = .clear
+
         self.setupLayoutWithFlex()
         self.setupRootFlexContainer()
     }
@@ -62,19 +83,17 @@ class RecommendProductCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Layout
-extension RecommendProductCollectionViewCell {
+extension SearchResultCell {
     private func setupRootFlexContainer() {
         self.contentView.addSubview(rootFlexContainer)
         self.rootFlexContainer.pin.all()
-        self.rootFlexContainer.flex.layout(mode: .adjustWidth)
+        self.rootFlexContainer.flex.layout()
     }
     private func setupLayoutWithFlex() {
-        self.rootFlexContainer.flex.direction(.row).alignItems(.start).height(110).define { flex in
-            flex.addItem(productImageView).vertically(0).left(0).width(100).height(110).cornerRadius(15)
-
-            flex.addItem().marginLeft(10).define { flex in
-                flex.addItem(mostBougthProductLabel).marginTop(5)
-                flex.addItem(productNameLabel).paddingTop(3).width(100)
+        self.rootFlexContainer.flex.direction(.row).alignItems(.start).marginVertical(7.5).define { flex in
+            flex.addItem(productImageView).position(.absolute).width(100).height(110).cornerRadius(15)
+            flex.addItem().position(.absolute).marginLeft(110).define { flex in
+                flex.addItem(productNameLabel).marginTop(5)
 
                 flex.addItem().marginTop(3).direction(.row).define { flex in
                     flex.addItem(discountPriceLabel)
