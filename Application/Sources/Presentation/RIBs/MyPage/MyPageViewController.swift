@@ -16,8 +16,13 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     private let rootFlexContainer = UIView()
 
     // MARK: - UI
+    private let backgroundView = UIView().then {
+        $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
+        $0.layer.makeShadow()
+    }
     private let profileView = UIView().then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray50)
+        $0.layer.makeShadow()
     }
     private let profileImageView = UIImageView().then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
@@ -38,6 +43,7 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     }
     private let movePayScreenButton = UIButton(type: .system).then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray50)
+        $0.layer.makeShadow()
         $0.imageEdgeInsets = .init(top: 18, left: 173, bottom: 18, right: 20)
         $0.setImage(.init(systemName: "arrow.right.circle"), for: .normal)
         $0.setTitle("위대한 Pay", for: .normal)
@@ -49,6 +55,7 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     }
     private let moveOrderListScreenButton = UIButton(type: .system).then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray50)
+        $0.layer.makeShadow()
         $0.imageEdgeInsets = .init(top: 18, left: 192, bottom: 18, right: 20)
         $0.setImage(.init(systemName: "arrow.right.circle"), for: .normal)
         $0.setTitle("주문목록", for: .normal)
@@ -60,6 +67,7 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     }
     private let moveExchangeListScreenButton = UIButton(type: .system).then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray50)
+        $0.layer.makeShadow()
         $0.imageEdgeInsets = .init(top: 18, left: 114, bottom: 18, right: 20)
         $0.setImage(.init(systemName: "arrow.right.circle"), for: .normal)
         $0.setTitle("취소-반품-교환목록", for: .normal)
@@ -71,6 +79,7 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     }
     private let moveEnvironmentSettingScreenButton = UIButton(type: .system).then {
         $0.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray50)
+        $0.layer.makeShadow()
         $0.imageEdgeInsets = .init(top: 18, left: 192, bottom: 18, right: 20)
         $0.setImage(.init(systemName: "arrow.right.circle"), for: .normal)
         $0.setTitle("환경설정", for: .normal)
@@ -108,6 +117,7 @@ extension MyPageViewController {
     }
     private func setupLayoutWithFlex() {
         self.rootFlexContainer.flex.define { flex in
+            flex.addItem(backgroundView).cornerRadius(20).position(.absolute).top(66).horizontally(0).bottom(0)
             flex.addItem(profileView).direction(.row).alignItems(.center).define { flex in
                 flex.addItem(profileImageView).width(60).height(60).cornerRadius(30).marginLeft(20)
                 flex.addItem().justifyContent(.center).define { flex in
@@ -120,17 +130,21 @@ extension MyPageViewController {
                 .marginLeft(15)
                 .height(100)
             }
+            .marginHorizontal(view.frame.width / 11)
             .marginTop(16).cornerRadius(15)
 
             flex.addItem(movePayScreenButton).height(60).cornerRadius(15).marginTop(15)
+                .marginHorizontal(view.frame.width / 11)
 
             flex.addItem(moveOrderListScreenButton).height(60).cornerRadius(15).marginTop(15)
+                .marginHorizontal(view.frame.width / 11)
 
             flex.addItem(moveExchangeListScreenButton).height(60).cornerRadius(15).marginTop(15)
+                .marginHorizontal(view.frame.width / 11)
 
             flex.addItem(moveEnvironmentSettingScreenButton).height(60).cornerRadius(15).marginTop(15)
+                .marginHorizontal(view.frame.width / 11)
 
         }
-        .marginHorizontal(view.frame.width / 11)
     }
 }
