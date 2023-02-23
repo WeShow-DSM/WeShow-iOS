@@ -3,7 +3,7 @@ import RIBs
 protocol MyPageDependency: Dependency {
 }
 
-final class MyPageComponent: Component<MyPageDependency> {
+final class MyPageComponent: Component<MyPageDependency>, OrderListDependency {
 }
 
 // MARK: - Builder
@@ -19,10 +19,18 @@ final class MyPageBuilder: Builder<MyPageDependency>, MyPageBuildable {
     }
 
     func build(withListener listener: MyPageListener) -> MyPageRouting {
-        _ = MyPageComponent(dependency: dependency)
+        let component = MyPageComponent(dependency: dependency)
         let viewController = MyPageViewController()
-        let interactor = MyPageInteractor(presenter: viewController)
+        let interactor = MyPageInteractor(
+            presenter: viewController,
+            initialState: MyPagePresentableState()
+        )
+        let orderListBuilder = OrderListBuilder(dependency: component)
         interactor.listener = listener
-        return MyPageRouter(interactor: interactor, viewController: viewController)
+        return MyPageRouter(
+            orderListBuilder: orderListBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }

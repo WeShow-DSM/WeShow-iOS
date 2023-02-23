@@ -29,14 +29,12 @@ final class CategoryInteractor: PresentableInteractor<CategoryPresentable>, Cate
     weak var listener: CategoryListener?
 
     let initialState: CategoryPresentableState
-    var currentState: CategoryPresentableState
 
     init(
         presenter: CategoryPresentable,
         initialState: CategoryPresentableState
     ) {
         self.initialState = initialState
-        self.currentState = initialState
 
         super.init(presenter: presenter)
         presenter.listener = self

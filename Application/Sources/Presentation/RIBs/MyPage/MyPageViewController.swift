@@ -4,14 +4,30 @@ import UIKit
 
 import FlexLayout
 import PinLayout
+import ReactorKit
+import RxCocoa
 import Then
 
+enum MyPagePresentableAction {
+    case viewWillAppear
+    case orderListButtonDidTap
+}
+struct MyPagePresentableState {
+}
+
 protocol MyPagePresentableListener: AnyObject {
+    typealias Action = MyPagePresentableAction
+    typealias State = MyPagePresentableState
+
+    func sendAction(_ action: Action)
 }
 
 final class MyPageViewController: UIViewController, MyPagePresentable, MyPageViewControllable {
 
     weak var listener: MyPagePresentableListener?
+
+    private var disposeBag = DisposeBag()
+    private let viewWillAppear = PublishRelay<Void>()
 
     private let rootFlexContainer = UIView()
 
@@ -94,12 +110,35 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
+        self.bind()
         self.setDemoData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewWillAppear.accept(())
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setupLayoutWithFlex()
         setupRootFlexContainer()
+    }
+
+    // MARK: - Bind
+    private func bind() {
+        self.moveOrderListScreenButton.rx.tap
+            .subscribe(onNext: {
+                self.listener?.sendAction(.orderListButtonDidTap)
+            })
+            .disposed(by: disposeBag)
+        self.viewWillAppear.subscribe(onNext: {
+            self.listener?.sendAction(.viewWillAppear)
+        })
+        .disposed(by: disposeBag)
+    }
+
+    // MARK: - Router
+    func pushViewController(viewController: ViewControllable) {
+        self.navigationController?.pushViewController(viewController.uiviewController, animated: true)
     }
 
     private func setDemoData() {
