@@ -27,6 +27,7 @@ final class CategoryViewController: UIViewController, CategoryPresentable, Categ
     weak var listener: CategoryPresentableListener?
 
     private var disposeBag = DisposeBag()
+    private let viewWillAppear = PublishRelay<Void>()
     private let categoryImageStringList = ["feed", "toy", "walkingProduct",
                                            "sanitaryProduct", "electronicDevices", "beauty",
                                            "clothing", "interior", "toiletProduct", ""]
@@ -51,7 +52,7 @@ final class CategoryViewController: UIViewController, CategoryPresentable, Categ
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.listener?.sendAction(.viewWillAppear)
+        self.viewWillAppear.accept(())
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -59,13 +60,19 @@ final class CategoryViewController: UIViewController, CategoryPresentable, Categ
         setupRootFlexContainer()
     }
 
+    // MARK: - Bind
     private func bind() {
         self.categoryTableView.rx.itemSelected.subscribe(onNext: {
             self.listener?.sendAction(.loadDetail(self.categoryTitleList[$0.row]))
         })
         .disposed(by: disposeBag)
+        self.viewWillAppear.subscribe(onNext: {
+            self.listener?.sendAction(.viewWillAppear)
+        })
+        .disposed(by: disposeBag)
     }
 
+    // MARK: - Router
     func pushViewController(viewController: ViewControllable) {
         self.navigationController?.pushViewController(viewController.uiviewController, animated: true)
     }
