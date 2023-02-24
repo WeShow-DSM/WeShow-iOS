@@ -21,7 +21,6 @@ final class DetailCategoryViewController: UIViewController, DetailCategoryPresen
     private let categoryCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout().then {
-            $0.minimumInteritemSpacing = 15
             $0.minimumLineSpacing = 15
         }
     ).then {
@@ -72,6 +71,14 @@ extension DetailCategoryViewController: UICollectionViewDelegateFlowLayout, UICo
     private func setCollectionView() {
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        return self.view.frame.width / 30
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
