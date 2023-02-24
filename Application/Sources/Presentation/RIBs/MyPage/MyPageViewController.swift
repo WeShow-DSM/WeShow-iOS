@@ -136,11 +136,6 @@ final class MyPageViewController: UIViewController, MyPagePresentable, MyPageVie
         .disposed(by: disposeBag)
     }
 
-    // MARK: - Router
-    func pushViewController(viewController: ViewControllable) {
-        self.navigationController?.pushViewController(viewController.uiviewController, animated: true)
-    }
-
     private func setDemoData() {
         self.nameLabel.text = "김기영"
         self.payLabel.text = "위대한 Pay 잔액 : 1,000,000원"

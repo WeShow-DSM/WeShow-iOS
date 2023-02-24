@@ -1,7 +1,6 @@
 import RIBs
 import ReactorKit
 import RxSwift
-import RxCocoa
 
 protocol MyPageRouting: ViewableRouting {
     func attachOrderListRIB()

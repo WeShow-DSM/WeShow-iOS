@@ -4,14 +4,30 @@ import UIKit
 
 import FlexLayout
 import PinLayout
+import ReactorKit
+import RxCocoa
 import Then
 
+enum OrderListPresentableAction {
+    case viewWillAppear
+    case deliveryCheckButtonDidTap
+}
+struct OrderListPresentableState {
+}
+
 protocol OrderListPresentableListener: AnyObject {
+    typealias Action = OrderListPresentableAction
+    typealias State = OrderListPresentableState
+
+    func sendAction(_ action: Action)
 }
 
 final class OrderListViewController: UIViewController, OrderListPresentable, OrderListViewControllable {
 
     weak var listener: OrderListPresentableListener?
+
+    private var disposeBag = DisposeBag()
+    private let viewWillAppear = PublishRelay<Void>()
 
     private let rootFlexContainer = UIView()
 
@@ -26,11 +42,13 @@ final class OrderListViewController: UIViewController, OrderListPresentable, Ord
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .init(asset: WeShowIOSAsset.Color.gray100)
+        self.bind()
         self.setTableView()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNavigation()
+        self.viewWillAppear.accept(())
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -42,6 +60,14 @@ final class OrderListViewController: UIViewController, OrderListPresentable, Ord
     private func setNavigation() {
         self.title = "주문목록"
         self.navigationController?.navigationBar.setBackButton()
+    }
+
+    // MARK: - Bind
+    private func bind() {
+        self.viewWillAppear.subscribe(onNext: {
+            self.listener?.sendAction(.viewWillAppear)
+        })
+        .disposed(by: disposeBag)
     }
 }
 
@@ -74,6 +100,11 @@ extension OrderListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? OrderListTableViewCell
         cell?.setDemoData()
+        cell?.checkDeliveryButton.rx.tap
+            .subscribe(onNext: {
+                self.listener?.sendAction(.deliveryCheckButtonDidTap)
+            })
+            .disposed(by: disposeBag)
         return cell ?? UITableViewCell()
     }
 }

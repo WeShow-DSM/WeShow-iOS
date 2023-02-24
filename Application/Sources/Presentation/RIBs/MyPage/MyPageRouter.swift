@@ -6,7 +6,6 @@ protocol MyPageInteractable: Interactable, OrderListListener {
 }
 
 protocol MyPageViewControllable: ViewControllable {
-    func pushViewController(viewController: ViewControllable)
 }
 
 final class MyPageRouter: ViewableRouter<MyPageInteractable, MyPageViewControllable>, MyPageRouting {

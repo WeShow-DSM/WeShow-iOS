@@ -57,7 +57,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     private let todaysInfoCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout().then {
-            $0.minimumInteritemSpacing = 11
             $0.scrollDirection = .horizontal
         }
     ).then {
@@ -81,7 +80,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
     private let popularProductCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout().then {
-            $0.minimumInteritemSpacing = 15
             $0.minimumLineSpacing = 15
         }
     ).then {
@@ -101,7 +99,6 @@ final class HomeViewController: UIViewController, HomePresentable, HomeViewContr
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout().then {
             $0.minimumLineSpacing = 15
-            $0.minimumInteritemSpacing = 15
             $0.scrollDirection = .horizontal
         }
     ).then {
@@ -185,6 +182,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        switch collectionView.tag {
+        case 1:
+            return 11
+        case 2:
+            return self.view.frame.width / 30
+        default:
+            return 15
+        }
     }
 
     func collectionView(

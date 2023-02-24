@@ -3,7 +3,7 @@ import RIBs
 protocol OrderListDependency: Dependency {
 }
 
-final class OrderListComponent: Component<OrderListDependency> {
+final class OrderListComponent: Component<OrderListDependency>, CheckDeliveryDependency {
 }
 
 // MARK: - Builder
@@ -18,10 +18,15 @@ final class OrderListBuilder: Builder<OrderListDependency>, OrderListBuildable {
     }
 
     func build(withListener listener: OrderListListener) -> OrderListRouting {
-        _ = OrderListComponent(dependency: dependency)
+        let component = OrderListComponent(dependency: dependency)
+        let checkDeliveryBuilder = CheckDeliveryBuilder(dependency: component)
         let viewController = OrderListViewController()
-        let interactor = OrderListInteractor(presenter: viewController)
+        let interactor = OrderListInteractor(initialState: .init(), presenter: viewController)
         interactor.listener = listener
-        return OrderListRouter(interactor: interactor, viewController: viewController)
+        return OrderListRouter(
+            checkDeliveryBuilder: checkDeliveryBuilder,
+            interactor: interactor,
+            viewController: viewController
+        )
     }
 }
