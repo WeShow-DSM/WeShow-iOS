@@ -71,11 +71,6 @@ final class CategoryViewController: UIViewController, CategoryPresentable, Categ
         })
         .disposed(by: disposeBag)
     }
-
-    // MARK: - Router
-    func pushViewController(viewController: ViewControllable) {
-        self.navigationController?.pushViewController(viewController.uiviewController, animated: true)
-    }
 }
 
 // MARK: - Layout

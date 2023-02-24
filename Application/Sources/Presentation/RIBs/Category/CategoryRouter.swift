@@ -6,7 +6,6 @@ protocol CategoryInteractable: Interactable, DetailCategoryListener {
 }
 
 protocol CategoryViewControllable: ViewControllable {
-    func pushViewController(viewController: ViewControllable)
 }
 
 // swiftlint:disable line_length
