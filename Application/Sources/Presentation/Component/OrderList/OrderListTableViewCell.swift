@@ -30,7 +30,7 @@ class OrderListTableViewCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 8, weight: .medium)
         $0.textColor = UIColor(asset: WeShowIOSAsset.Color.gray400)
     }
-    private let writeReviewButton =  UIButton(type: .system).then {
+    let writeReviewButton =  UIButton(type: .system).then {
         $0.imageEdgeInsets = .init(top: 1, left: 2, bottom: 1, right: 0)
         $0.setTitle("후기 작성", for: .normal)
         $0.setTitleColor(UIColor(asset: WeShowIOSAsset.Color.gray500), for: .normal)
@@ -41,14 +41,14 @@ class OrderListTableViewCell: UITableViewCell {
         $0.titleLabel?.font = .systemFont(ofSize: 8, weight: .semibold)
         $0.titleEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 2)
     }
-    private let trakingButton = UIButton(type: .system).then {
+    let checkDeliveryButton = UIButton(type: .system).then {
         $0.backgroundColor = .white
         $0.layer.makeShadow()
         $0.setTitle("배송 조회", for: .normal)
         $0.setTitleColor(UIColor(asset: WeShowIOSAsset.Color.gray700), for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 10, weight: .semibold)
     }
-    private let applicationForExchangeButton = UIButton(type: .system).then {
+    let applicationForExchangeButton = UIButton(type: .system).then {
         $0.backgroundColor = .white
         $0.layer.makeShadow()
         $0.setTitle("교환 환불 신청", for: .normal)
@@ -108,7 +108,7 @@ extension OrderListTableViewCell {
                 flex.addItem(writeReviewButton).height(10).marginTop(3).width(45)
 
                 flex.addItem().direction(.row).define { flex in
-                    flex.addItem(trakingButton).width(110).height(31).cornerRadius(10)
+                    flex.addItem(checkDeliveryButton).width(110).height(31).cornerRadius(10)
                     flex.addItem(applicationForExchangeButton).width(110).height(31).cornerRadius(10)
                         .position(.absolute).right(0)
                 }
