@@ -4,6 +4,7 @@ import RxSwift
 
 protocol MyPageRouting: ViewableRouting {
     func attachOrderListRIB()
+    func attachAuthRIB()
     func detachRIB()
 }
 
@@ -21,7 +22,6 @@ final class MyPageInteractor: PresentableInteractor<MyPagePresentable>, MyPageIn
     typealias State = MyPagePresentableState
 
     enum Mutation {
-        case attachOrderListRIB
     }
 
     weak var router: MyPageRouting?
@@ -58,8 +58,7 @@ extension MyPageInteractor {
         case .orderListButtonDidTap:
             return attachOrderListMutation()
         default:
-            router?.detachRIB()
-            return .empty()
+            return attachAuthMutation()
         }
     }
 }
@@ -68,6 +67,10 @@ extension MyPageInteractor {
 extension MyPageInteractor {
     private func attachOrderListMutation() -> Observable<Mutation> {
         self.router?.attachOrderListRIB()
-        return .just(.attachOrderListRIB)
+        return .empty()
+    }
+    private func attachAuthMutation() -> Observable<Mutation> {
+        self.router?.attachAuthRIB()
+        return .empty()
     }
 }
