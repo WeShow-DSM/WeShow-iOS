@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "스크린샷 2023-01-11 오전 8.55 1.png",
+      "filename" : "interior.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "스크린샷 2023-01-11 오전 8.55 1@2x.png",
+      "filename" : "interior2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "스크린샷 2023-01-11 오전 8.55 1@3x.png",
+      "filename" : "interior3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

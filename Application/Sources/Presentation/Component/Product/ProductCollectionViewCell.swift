@@ -43,7 +43,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        productImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
+        productImageView.image = .init()
         productNameLabel.text = "이것은 저희 로고입니다."
         priceLabel.text = "10,000원"
         starView.rating = 4.5

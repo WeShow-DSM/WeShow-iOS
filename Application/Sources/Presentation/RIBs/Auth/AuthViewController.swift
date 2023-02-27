@@ -32,10 +32,8 @@ final class AuthViewController: UIViewController, AuthPresentable, AuthViewContr
 
     // MARK: - UI
     private let logoImageView = UIImageView().then {
-        $0.backgroundColor = .white
-        $0.contentMode = .scaleToFill
-        $0.image = .init(asset: WeShowIOSAsset.Images.navigationBarLogo)
-        $0.layer.makeShadow()
+        $0.contentMode = .scaleAspectFill
+        $0.image = .init(asset: WeShowIOSAsset.Images.logo2)
     }
     private let appNameLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 16, weight: .semibold)

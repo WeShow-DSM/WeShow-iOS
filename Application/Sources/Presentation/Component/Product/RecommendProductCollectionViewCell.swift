@@ -52,7 +52,7 @@ class RecommendProductCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        productImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
+        productImageView.image = .init()
         productNameLabel.text = "저희 앱의 로고입니다."
         discountPriceLabel.text = "45,000원"
         priceLabel.attributedText = "50,000원".strikeLineToCenter()
