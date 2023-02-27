@@ -76,7 +76,6 @@ final class LoginViewController: UIViewController, LoginPresentable, LoginViewCo
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.loginButton.isEnabled = false
         self.setNavigation()
     }
     override func viewWillLayoutSubviews() {
