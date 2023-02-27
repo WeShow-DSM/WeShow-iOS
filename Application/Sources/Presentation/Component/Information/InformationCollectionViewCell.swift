@@ -26,7 +26,7 @@ class InformationCollectionViewCell: UICollectionViewCell {
     }
 
     func setDemoData() {
-        informationImageView.image = .init(asset: WeShowIOSAsset.Images.dummyImage)
+        informationImageView.image = .init()
     }
 }
 

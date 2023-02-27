@@ -3,7 +3,7 @@ import RIBs
 protocol MyPageDependency: Dependency {
 }
 
-final class MyPageComponent: Component<MyPageDependency>, OrderListDependency {
+final class MyPageComponent: Component<MyPageDependency>, OrderListDependency, AuthDependency {
 }
 
 // MARK: - Builder
@@ -26,9 +26,12 @@ final class MyPageBuilder: Builder<MyPageDependency>, MyPageBuildable {
             initialState: MyPagePresentableState()
         )
         let orderListBuilder = OrderListBuilder(dependency: component)
+        let authBuilder = AuthBuilder(dependency: component)
         interactor.listener = listener
+
         return MyPageRouter(
             orderListBuilder: orderListBuilder,
+            authBuilder: authBuilder,
             interactor: interactor,
             viewController: viewController
         )
