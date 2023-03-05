@@ -6,7 +6,7 @@ import RxMoya
 import RxSwift
 import Swinject
 
-public class WeShowRemoteDataSource<API: WeShowAPI> {
+open class WeShowRemoteDataSource<API: WeShowAPI> {
 
     private let provider = MoyaProvider<API>(plugins: [JWTPlugin()])
     private let tokenLocalDataSource = TokenLocalDataSourceImpl.shared
