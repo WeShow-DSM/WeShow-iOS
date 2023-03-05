@@ -6,6 +6,7 @@ extension TargetDependency {
         public static let WeShowService = service(name: "WeShowService")
         public static let AuthService = service(name: "AuthService")
         public static let ProductService = service(name: "ProductService")
+        public static let OrderService = service(name: "OrderService")
     }
 
     private static func service(name: String) -> TargetDependency {
